@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import User_Login_Page from './components/user_authontication/User_Login_Page';
+// import { Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Main_Layout from './components/dashboard/Main_Layout';
 
 function App() {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='h-full w-full overflow-hidden bg-gray-100'>
+      {/* <Routes>
+        <Route path='/login' element={<User_Login_Page />} />
+        <Route path='/' element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
+      </Routes> */}
+      {isLoggedIn ? (
+        <Main_Layout />
+      ) : (
+        <User_Login_Page />
+      )}
     </div>
   );
 }
